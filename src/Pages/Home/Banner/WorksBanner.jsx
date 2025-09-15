@@ -20,48 +20,45 @@ export default function WorksBanner() {
             </p>
           </div>
         </div>
-        {/* cart 1 */}
+        {/* cart 2 */}
         <div className="card bg-white shadow-md  transition  hover:bg-[#CAEB66] hover:shadow-xl">
           <div className="card-body  text-left">
             <div className="mb-4">
               <img src={bookinglogo} alt="" />
             </div>
             <h3 className="card-title text-black  text-lg font-semiboldtext-black ">
-              Booking Pick & Drop
+              Cash On Delivery
             </h3>
             <p className="text-sm text-black ">
-              From personal packages to business shipments — we deliver on time,
-              every time.
+            From personal packages to business shipments — we deliver on time, every time.
             </p>
           </div>
         </div>
-        {/* cart 1 */}
+        {/* cart 3 */}
         <div className="card bg-white shadow-md  transition  hover:bg-[#CAEB66] hover:shadow-xl">
           <div className="card-body  text-left">
             <div className="mb-4">
               <img src={bookinglogo} alt="" />
             </div>
             <h3 className="card-title text-black  text-lg font-semiboldtext-black ">
-              Booking Pick & Drop
+           Delivery Hub
             </h3>
             <p className="text-sm text-black ">
-              From personal packages to business shipments — we deliver on time,
-              every time.
+             From personal packages to business shipments — we deliver on time, every time.
             </p>
           </div>
         </div>
-        {/* cart 1 */}
+        {/* cart 4 */}
         <div className="card bg-white shadow-md  transition  hover:bg-[#CAEB66] hover:shadow-xl">
           <div className="card-body  text-left">
             <div className="mb-4">
               <img src={bookinglogo} alt="" />
             </div>
             <h3 className="card-title text-black  text-lg font-semiboldtext-black ">
-              Booking Pick & Drop
+             Booking SME & Corporate
             </h3>
             <p className="text-sm text-black ">
-              From personal packages to business shipments — we deliver on time,
-              every time.
+           From personal packages to business shipments — we deliver on time, every time.
             </p>
           </div>
         </div>
