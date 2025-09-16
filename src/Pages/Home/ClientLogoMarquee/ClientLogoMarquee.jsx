@@ -13,7 +13,7 @@ export default function ClientLogoMarquee() {
 
   return (
     <section className="py-12">
-      <p className='text-3xl text-[#03373D] text-center mb-8'>
+      <p className='text-3xl text-[#03373D] font-bold text-center mb-8'>
         We've helped thousands of sales teams
       </p>
 
@@ -24,8 +24,8 @@ export default function ClientLogoMarquee() {
         autoFill
       >
         {logos.map((logo, index) => (
-          <div key={index} className="px-8 flex items-center justify-center">
-            <img src={logo} alt={`Client ${index + 1}`} className="h-10 md:h-10 object-contain"/>
+          <div key={index} className="mx-10 lg:mx-24 flex items-center">
+            <img src={logo} alt={`Client ${index + 1}`} className="h-6 md:h-6 lg:h-6 object-contain"/>
           </div>
         ))}
       </Marquee>

@@ -3,7 +3,7 @@ import bookinglogo from "../../../assets/bookingIcon.png";
 export default function WorksBanner() {
   return (
     <div className="py-10 ">
-      <h2 className="text-3xl px-6 md:px-12 lg:px-20 text-[#03373D] mb-8">How its Works</h2>
+      <h2 className="text-3xl px-6 md:px-12 lg:px-20 text-[#03373D] font-bold mb-8">How its Works</h2>
       <div className="grid gap-8 px-6 md:px-12 lg:px-20 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {/* cart 1 */}
         <div className="card bg-white shadow-md  transition  hover:bg-[#CAEB66] hover:shadow-xl">
