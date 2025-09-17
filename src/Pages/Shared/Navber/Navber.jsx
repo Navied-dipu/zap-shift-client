@@ -8,6 +8,7 @@ export default function Navber() {
   const navLinks = (
     <>
       <li><NavLink to='/'>Home</NavLink></li>
+      <li><NavLink to='/coverage'>Coverage</NavLink></li>
       <li><NavLink to='/aboutus'>About Us</NavLink></li>
     </>
   );
@@ -39,7 +40,7 @@ export default function Navber() {
          {navLinks}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl"><ProFastlogo></ProFastlogo></a>
+        <ProFastlogo className="btn btn-ghost text-xl"></ProFastlogo>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
