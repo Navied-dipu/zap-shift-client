@@ -1,30 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import CoverageMap from "./CoverageMap";
 import { useLoaderData } from "react-router-dom";
 
 export default function Coverage() {
-    const warehouses=useLoaderData()
-    console.log(warehouses)
+  const warehouses = useLoaderData();
+  // console.log(warehouses);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const input = e.target.elements.search.value;
+    setSearchQuery(input);
+  };
+
   return (
     <div className="py-12 bg-gray-50">
       <div className="max-w-6xl mx-auto px-4 text-center">
         {/* Heading */}
         <h2 className="text-3xl text-black font-bold mb-6">
-          We are available in{" "}
-          <span className="text-black">64 districts</span>
+          We are available in <span className="text-black">64 districts</span>
         </h2>
-
         {/* Search Box */}
-        {/* <div className="flex justify-center">
+        <form
+          onSubmit={handleSearch}
+          className="flex justify-center mb-6 gap-2"
+        >
           <input
             type="text"
+            name="search"
             placeholder="Search district..."
-            // value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full md:w-1/2 px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="px-4 py-2 border bg-gray-300 text-black rounded w-64"
           />
-        </div> */}
-        <CoverageMap warehouses={warehouses}></CoverageMap>
+          <button
+            type="submit"
+            className="px-4 py-2 bg-blue-600 text-white rounded"
+          >
+            Search
+          </button>
+        </form>
+        <CoverageMap warehouses={warehouses} searchQuery ={searchQuery}></CoverageMap>
       </div>
     </div>
   );
