@@ -14,7 +14,7 @@ export default function Coverage() {
   };
 
   return (
-    <div className="py-12 bg-gray-50">
+    <div className="py-12 bg-gray-50 rounded-3xl mb-10 mt-10">
       <div className="max-w-6xl mx-auto px-4 text-center">
         {/* Heading */}
         <h2 className="text-3xl text-black font-bold mb-6">
@@ -29,11 +29,11 @@ export default function Coverage() {
             type="text"
             name="search"
             placeholder="Search district..."
-            className="px-4 py-2 border bg-gray-300 text-black rounded w-64"
+            className="px-4 py-2 border rounded-2xl bg-gray-300 text-black  w-64"
           />
           <button
             type="submit"
-            className="px-4 py-2 bg-blue-600 text-white rounded"
+            className="px-4 py-2 rounded-2xl bg-blue-600 text-white "
           >
             Search
           </button>

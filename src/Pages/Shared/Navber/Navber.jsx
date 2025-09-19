@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import ProFastlogo from "../Profast/ProFastlogo";
 
 
@@ -9,6 +9,7 @@ export default function Navber() {
     <>
       <li><NavLink to='/'>Home</NavLink></li>
       <li><NavLink to='/coverage'>Coverage</NavLink></li>
+      <li><NavLink to='/sendParcel'>Send Parcel</NavLink></li>
       <li><NavLink to='/aboutus'>About Us</NavLink></li>
     </>
   );
@@ -48,7 +49,7 @@ export default function Navber() {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        <Link to='/login' className="btn btn-primary text-black">Login</Link>
       </div>
     </div>
   );
