@@ -5,12 +5,14 @@ import { useLoaderData } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
 import useAuth from "../../Contexts/hooks/useAuth";
+import useAxiosSecure from "../../Contexts/hooks/useAxiosSecure";
 
 export default function SendParcel() {
   const wareHouses = useLoaderData();
   const { register, handleSubmit, watch } = useForm();
   const type = watch("type");
-  const {user}=useAuth()
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   // console.log(user)
   // Sender state
   const [senderRegion, setSenderRegion] = useState("");
@@ -87,13 +89,13 @@ export default function SendParcel() {
     `,
       icon: "info",
       showCancelButton: true,
-      confirmButtonText: "✅ Confirm",
+      confirmButtonText: "✅ Payment",
       cancelButtonText: "❌ Cancel",
       confirmButtonColor: "#16a34a",
       cancelButtonColor: "#dc2626",
     }).then((result) => {
       if (result.isConfirmed) {
-        const savedData = {
+        const parcelsData = {
           ...data,
           sender_email: user?.email,
           cost,
@@ -101,22 +103,19 @@ export default function SendParcel() {
           bookingTime,
           creation_date: new Date().toISOString(),
         };
-
-        console.log(savedData);
-        // Simulate saving
-        Swal.fire({
-          title: "Saving...",
-          text: "Please wait while we confirm your booking.",
-          allowOutsideClick: false,
-          didOpen: () => {
-            Swal.showLoading();
-          },
+        axiosSecure.post("/parcels", parcelsData).then((res) => {
+          if (res.data.insertedId) {
+            Swal.fire({
+              title: "Redirecting...",
+              text: "Proceeding to payment gateway.",
+              icon: "success",
+              timer: 1500,
+              showConfirmButton: false,
+            });
+          }
         });
 
-        setTimeout(() => {
-          console.log({ ...data, cost, creation_date: new Date() });
-          Swal.fire("✅ Success!", "Parcel booking confirmed.", "success");
-        }, 1500);
+        // Simulate saving
       }
     });
   };

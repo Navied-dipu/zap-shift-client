@@ -1,15 +1,23 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import ProFastlogo from "../Profast/ProFastlogo";
+import useAuth from "../../../Contexts/hooks/useAuth";
 
 
 
 export default function Navber() {
+  const {user}=useAuth()
   const navLinks = (
     <>
       <li><NavLink to='/'>Home</NavLink></li>
       <li><NavLink to='/coverage'>Coverage</NavLink></li>
-      <li><NavLink to='/sendParcel'>Send Parcel</NavLink></li>
+    
+      {
+        user && <>
+          <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
+          <li><NavLink to='/sendParcel'>Send Parcel</NavLink></li>
+        </>
+      }
       <li><NavLink to='/aboutus'>About Us</NavLink></li>
     </>
   );

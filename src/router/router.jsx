@@ -7,39 +7,56 @@ import Register from "../Pages/Authentication/Register/Register";
 import Coverage from "../Pages/Coverage/Coverage";
 import PrivetRouts from "../routes/PrivetRouts";
 import SendParcel from "../Pages/SendParcel/SendParcel";
+import DashboardLayout from "../Layout/DashboardLayout";
+import MyParcel from "../Pages/Dashboard/MyParcel";
 export const router = createBrowserRouter([
   {
     path: "/",
-  Component:RootLayout,
-  children:[
-    {
-        index:true,
-        Component:Home,
-    },
-    {
-      path:'coverage',
-      Component:Coverage,
-      loader:()=> fetch('./warehouses.json')
-    },
-    {
-      path:'sendParcel',
-      element:<PrivetRouts><SendParcel></SendParcel></PrivetRouts>,
-       loader:()=> fetch('./warehouses.json')
-    }
-  ]
+    Component: RootLayout,
+    children: [
+      {
+        index: true,
+        Component: Home,
+      },
+      {
+        path: "coverage",
+        Component: Coverage,
+        loader: () => fetch("./warehouses.json"),
+      },
+      {
+        path: "sendParcel",
+        element: (
+          <PrivetRouts>
+            <SendParcel></SendParcel>
+          </PrivetRouts>
+        ),
+        loader: () => fetch("./warehouses.json"),
+      },
+    ],
   },
   {
-    element:'/',
+    element: "/",
     Component: AuthLayout,
-    children:[
-     { path:'login',
-      Component: Login
-     },
-     {
-      path:'register',
-      Component: Register
-     }
-
-    ]
-  }
+    children: [
+      { path: "login", Component: Login },
+      {
+        path: "register",
+        Component: Register,
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: (
+      <PrivetRouts>
+        <DashboardLayout></DashboardLayout>
+      </PrivetRouts>
+    ),
+    children: [
+      {
+        path: "myparcels",
+       Component:MyParcel
+      },
+    ],
+  },
 ]);
