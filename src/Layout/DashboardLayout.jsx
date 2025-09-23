@@ -1,5 +1,6 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
+import ProFastlogo from "../Pages/shared/Profast/ProFastlogo";
 
 export default function DashboardLayout() {
   return (
@@ -37,7 +38,7 @@ export default function DashboardLayout() {
           </div>
 
           {/* Page content here */}
-         <Outlet></Outlet>
+          <Outlet></Outlet>
         </div>
 
         {/* Sidebar */}
@@ -47,13 +48,15 @@ export default function DashboardLayout() {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
+
           <ul className="menu bg-base-200 text-base-content h-full w-64 p-4">
             {/* fixed width 64 instead of full */}
+            <ProFastlogo></ProFastlogo>
             <li>
-              <a>Sidebar Item 1</a>
+              <a>Home</a>
             </li>
             <li>
-              <a>Sidebar Item 2</a>
+             <NavLink to='/dashboard/myparcels'>My Paecels</NavLink>
             </li>
           </ul>
         </div>
