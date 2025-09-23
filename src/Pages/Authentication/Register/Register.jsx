@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { data, Link } from "react-router-dom";
+import { data, Link, useNavigate } from "react-router-dom";
 import useAuth from "../../../Contexts/hooks/useAuth";
 import SocialLogIn from "../../SocialLogIn/SocialLogIn";
 
@@ -11,11 +11,12 @@ export default function Register() {
     formState: { errors },
   } = useForm();
   const { createUser } = useAuth();
-
+const navigate=useNavigate()
   const onSubmit = (data) => {
     createUser(data.email, data.password)
       .then((result) => {
         console.log(result.user);
+        navigate('/')
       })
       .catch((error) => {
         error.message;

@@ -3,22 +3,38 @@ import { Link, NavLink } from "react-router-dom";
 import ProFastlogo from "../Profast/ProFastlogo";
 import useAuth from "../../../Contexts/hooks/useAuth";
 
-
-
 export default function Navber() {
-  const {user}=useAuth()
+  const { user, logOut } = useAuth();
+  const handleLogout = () => {
+    logOut()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const navLinks = (
     <>
-      <li><NavLink to='/'>Home</NavLink></li>
-      <li><NavLink to='/coverage'>Coverage</NavLink></li>
-    
-      {
-        user && <>
-          <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
-          <li><NavLink to='/sendParcel'>Send Parcel</NavLink></li>
-        </>
-      }
-      <li><NavLink to='/aboutus'>About Us</NavLink></li>
+      <li>
+        <NavLink to="/">Home</NavLink>
+      </li>
+      <li>
+        <NavLink to="/coverage">Coverage</NavLink>
+      </li>
+
+      <>
+        <li>
+          <NavLink to="/dashboard">Dashboard</NavLink>
+        </li>
+        <li>
+          <NavLink to="/sendParcel">Send Parcel</NavLink>
+        </li>
+      </>
+
+      <li>
+        <NavLink to="/aboutus">About Us</NavLink>
+      </li>
     </>
   );
   return (
@@ -46,18 +62,24 @@ export default function Navber() {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
-         {navLinks}
+            {navLinks}
           </ul>
         </div>
         <ProFastlogo className="btn btn-ghost text-xl"></ProFastlogo>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-       {navLinks}
-        </ul>
+        <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
       <div className="navbar-end">
-        <Link to='/login' className="btn btn-primary text-black">Login</Link>
+        {user ? (
+          <button onClick={handleLogout} className="btn btn-primary text-black">
+            Logout
+          </button>
+        ) : (
+          <Link to="/login" className="btn btn-primary text-black">
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );

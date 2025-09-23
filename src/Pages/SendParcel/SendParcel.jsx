@@ -99,6 +99,7 @@ export default function SendParcel() {
           ...data,
           sender_email: user?.email,
           cost,
+          payment_status:"unpaid",
           parcelId,
           bookingTime,
           creation_date: new Date().toISOString(),
