@@ -10,13 +10,15 @@ export default function MyParcel() {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
-  const { data: parcels = [], refetch = [] } = useQuery({
+  const { data: parcels = [], refetch } = useQuery({
     queryKey: ["my-parcels", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure(`/parcels?email=${user.email}`);
+      const res = await axiosSecure(`/parcels?email=${user?.email}`);
       return res.data;
     },
+    enabled: !!user?.email, // important: only fetch when email exists
   });
+
   console.log(parcels);
   const handlePay = (id) => {
     console.log("Proceed to payment for", id);

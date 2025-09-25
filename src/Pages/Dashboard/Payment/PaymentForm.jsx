@@ -1,14 +1,16 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAxiosSecure from "../../../Contexts/hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Contexts/hooks/useAuth";
+import Swal from "sweetalert2";
 
 export default function PaymentForm() {
   const stripe = useStripe();
   const elements = useElements();
-  const {user}=useAuth()
+  const navigate=useNavigate()
+  const { user } = useAuth();
   const [error, setError] = useState("");
   const { parcelId } = useParams();
   const axiosSecure = useAxiosSecure();
@@ -54,10 +56,10 @@ export default function PaymentForm() {
     const paymentResult = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
         card: elements.getElement(CardElement),
-        billing_details:{
-          name:user.displayName,
-          email:user.email
-        }
+        billing_details: {
+          name: user.displayName,
+          email: user.email,
+        },
       },
     });
     if (paymentResult.error) {
@@ -67,11 +69,32 @@ export default function PaymentForm() {
       if (paymentResult.paymentIntent.status === "succeeded") {
         // setSuccess("Payment successful ✅");
         // setError("");
-        console.log('payment success')
-        console.log(paymentResult)
+        console.log("payment success");
+        console.log(paymentResult);
+        const paymentData = {
+          parcelId,
+          email: user.email,
+          amount,
+          transactionId: paymentResult.paymentIntent.id,
+          paymentMethod: paymentResult.paymentIntent.payment_method_types,
+        };
+
+        const paymentRes = await axiosSecure.post("/payments", paymentData);
+        console.log(paymentRes);
+        if (paymentRes.data?.paymentId) {
+          Swal.fire({
+            title: "🎉 Payment Successful!",
+            text: `Your payment of $${amount} has been completed.`,
+            icon: "success",
+            confirmButtonText: "OK",
+          });
+          navigate('/dashboard/myparcels')
+        }
+        // if (paymentRes.data.insertedId) {
+        //   console.log("payment successfuly");
+        // }
       }
     }
-    // console.log(res);
   };
   return (
     <div>

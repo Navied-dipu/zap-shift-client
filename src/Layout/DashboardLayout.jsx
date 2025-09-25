@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import ProFastlogo from "../Pages/shared/Profast/ProFastlogo";
-
+import { FaHome, FaBox, FaHistory, FaTruck, FaUserEdit } from "react-icons/fa";
 export default function DashboardLayout() {
   return (
     <div>
@@ -53,10 +53,29 @@ export default function DashboardLayout() {
             {/* fixed width 64 instead of full */}
             <ProFastlogo></ProFastlogo>
             <li>
-              <a>Home</a>
+              <NavLink to="/">
+                <FaHome className="inline mr-2" /> Home
+              </NavLink>
             </li>
             <li>
-             <NavLink to='/dashboard/myparcels'>My Paecels</NavLink>
+              <NavLink to="/dashboard/myparcels">
+                <FaBox className="inline mr-2" /> My Parcels
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/dashboard/paymentHistory">
+                <FaHistory className="inline mr-2" /> Payment History
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/dashboard/track">
+                <FaTruck className="inline mr-2" /> Track Package
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/dashboard/profile">
+                <FaUserEdit className="inline mr-2" /> Update Profile
+              </NavLink>
             </li>
           </ul>
         </div>
